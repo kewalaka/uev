@@ -3,16 +3,16 @@ pull_requests:
   do_not_increment_build_number: true
 image: WMF 5
 install:
-- ps: . .\tests\Install.ps1
+- ps: . .\scripts\Install.ps1
 build_script:
-- ps: . .\tests\Build.ps1
+- ps: . .\scripts\Build.ps1
 test_script:
-- ps: . .\tests\Tests.ps1
+- ps: . .\scripts\Tests.ps1
 artifacts:
 - path: templates
   name: templates
 before_deploy:
-- ps: . .\tests\Pre-Deploy.ps1
+- ps: . .\scripts\Pre-Deploy.ps1
 deploy:
 - provider: AzureBlob
   storage_account_name: stealthpuppy

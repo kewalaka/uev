@@ -26,5 +26,5 @@ deploy:
     branch: master
 
 skip_commits:
-  message: /AppVeyor validate:.*/
+  message: /AppVeyor validate.*/
   

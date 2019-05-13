@@ -1,6 +1,6 @@
 <#
     .SYNOPSIS
-        AppVeyor tests setup script.
+        AppVeyor install script.
 #>
 # AppVeyor Testing
 If (Test-Path 'env:APPVEYOR_BUILD_FOLDER') {
@@ -22,6 +22,7 @@ Install-Module -Name PSScriptAnalyzer -SkipPublisherCheck -Force
 Install-Module -Name posh-git -Force
 
 # Configure the git environment
+$env:Path += ";$env:ProgramFiles\Git\cmd"
 Import-Module posh-git -ErrorAction Stop
 git config --global credential.helper store
 Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GitHubKey):x-oauth-basic@github.com`n"

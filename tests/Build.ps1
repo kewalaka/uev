@@ -1,6 +1,6 @@
 <#
     .SYNOPSIS
-        AppVeyor tests setup script.
+        AppVeyor build script.
 #>
 # AppVeyor Testing
 If (Test-Path 'env:APPVEYOR_BUILD_FOLDER') {

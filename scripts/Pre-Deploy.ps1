@@ -30,11 +30,10 @@ Else {
         Try {
             # Set up a path to the git.exe cmd, import posh-git to give us control over git
             $env:Path += ";$env:ProgramFiles\Git\cmd"
-            # Import-Module posh-git -ErrorAction Stop
+            Import-Module posh-git -ErrorAction Stop
 
             # Configure the git environment
             git config --global credential.helper store
-            Write-Host "Key: $env:GitHubKey" -ForegroundColor Cyan
             Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GitHubKey):x-oauth-basic@github.com`n"
             git config --global user.email "$env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL"
             git config --global user.name "$env:APPVEYOR_REPO_COMMIT_AUTHOR"

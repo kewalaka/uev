@@ -4,7 +4,7 @@ pull_requests:
 image: WMF 5
 environment:
   GitHubKey:
-    secure: unWb9ORoL3oo22K6z2U2fZ+AdBmv75laNb7jibBwQCMGv9u8Cs2GayQBGjkqfPro
+    secure: 085aq77wGuI+EI1wXVyiB8ERrsksUfSVrPjoxCzusqT8SFnY/Sb8P0PsKqvhybgF
 install:
 - ps: . .\scripts\Install.ps1
 build_script:

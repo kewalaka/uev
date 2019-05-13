@@ -14,7 +14,8 @@ deploy:
   storage_access_key:
     secure: No4/BI8lrkv/775GwkL82PPYuaX1hzYaXnW1bPiE3WyrwQJTc4ouDLI4Gx/nBm6DFuPmPlVF5VhMST+cQKhAvjnOgBhjC/XOgMYPSg9MR5qfKPOqE6teFId0z3TZqP/l
   container: uevtemplates
-  artifact: .\templates
+  artifact: templates
+  unzip: true
   set_content_type: true
   on:
     branch: master

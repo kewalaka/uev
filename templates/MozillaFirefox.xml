@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
   <Name>Mozilla Firefox</Name>
-  <ID>Firefox-firefox-v-51-0</ID>
+  <ID>MozillaFirefox</ID>
   <Version>2</Version>
   <Author>
     <Name>Gabriela Schweikert</Name>

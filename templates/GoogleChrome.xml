@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
   <Name>Google Chrome</Name>
-  <ID>Google Chrome #ALL</ID>
+  <ID>GoogleChrome</ID>
   <Version>2</Version>
   <Author>
     <Name>Matt Hadley</Name>

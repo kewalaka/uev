@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
   <Name>Adobe Acrobat Reader DC </Name>
-  <ID>Adobe-Acrobat-Reader-AcroRd32-v-19-10</ID>
+  <ID>AdobeAcrobatReaderDC</ID>
   <Version>1</Version>
   <Author>
     <Name>Aaron Parker</Name>
@@ -29,7 +29,7 @@
       <Path>Software\Adobe\CommonFiles\Usage\Reader DC</Path>
     </Registry>
     <Registry>
-      <Path>Software\Adobe\CommonFiles\Usage\Reader 19_Acrobat19_Reader_19.10.20099</Path>
+      <Path>Software\Adobe\CommonFiles\Usage</Path>
     </Registry>
     <Registry>
       <Path Recursive="true">Software\Adobe\Adobe ARM</Path>

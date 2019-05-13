@@ -1,0 +1,17 @@
+version: 1.0.{build}
+pull_requests:
+  do_not_increment_build_number: true
+build_script:
+- ps: . .\tests\Build.ps1
+test_script:
+- ps: . .\tests\Tests.ps1
+deploy:
+- provider: AzureBlob
+  storage_account_name: stealthpuppy.blob.core.windows.net
+  storage_access_key:
+    secure: No4/BI8lrkv/775GwkL82PPYuaX1hzYaXnW1bPiE3WyrwQJTc4ouDLI4Gx/nBm6DFuPmPlVF5VhMST+cQKhAvjnOgBhjC/XOgMYPSg9MR5qfKPOqE6teFId0z3TZqP/l
+  container: uevtemplates
+  artifact: .\templates
+  set_content_type: true
+  on:
+    branch: master

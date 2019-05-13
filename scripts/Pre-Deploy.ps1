@@ -17,10 +17,10 @@ Write-Host -Object ''
 # Make sure we're using the Master branch and that it's not a pull request
 # Environmental Variables Guide: https://www.appveyor.com/docs/environment-variables/
 If ($env:APPVEYOR_REPO_BRANCH -ne 'master') {
-    Write-Warning -Message "Skipping version increment and publish for branch $env:APPVEYOR_REPO_BRANCH"
+    Write-Warning -Message "Skipping version increment and push for branch $env:APPVEYOR_REPO_BRANCH"
 }
 ElseIf ($env:APPVEYOR_PULL_REQUEST_NUMBER -gt 0) {
-    Write-Warning -Message "Skipping version increment and publish for pull request #$env:APPVEYOR_PULL_REQUEST_NUMBER"
+    Write-Warning -Message "Skipping version increment and push for pull request #$env:APPVEYOR_PULL_REQUEST_NUMBER"
 }
 Else {
 
@@ -30,7 +30,7 @@ Else {
         Try {
             # Set up a path to the git.exe cmd, import posh-git to give us control over git
             $env:Path += ";$env:ProgramFiles\Git\cmd"
-            Import-Module posh-git -ErrorAction Stop
+            # Import-Module posh-git -ErrorAction Stop
 
             # Configure the git environment
             git config --global credential.helper store

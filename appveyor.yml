@@ -11,6 +11,8 @@ test_script:
 artifacts:
 - path: templates
   name: templates
+before_deploy:
+- ps: . .\tests\Pre-Deploy.ps1
 deploy:
 - provider: AzureBlob
   storage_account_name: stealthpuppy
@@ -22,3 +24,7 @@ deploy:
   set_content_type: true
   on:
     branch: master
+
+skip_commits:
+  message: /AppVeyor validate:.*/
+  

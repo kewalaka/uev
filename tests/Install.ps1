@@ -22,6 +22,7 @@ Install-Module -Name PSScriptAnalyzer -SkipPublisherCheck -Force
 Install-Module -Name posh-git -Force
 
 # Configure the git environment
+Import-Module posh-git -ErrorAction Stop
 git config --global credential.helper store
 Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GitHubKey):x-oauth-basic@github.com`n"
 git config --global user.email "aaron@stealthpuppy.com"

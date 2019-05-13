@@ -5,6 +5,9 @@ build_script:
 - ps: . .\tests\Build.ps1
 test_script:
 - ps: . .\tests\Tests.ps1
+artifacts:
+- path: templates
+  name: templates
 deploy:
 - provider: AzureBlob
   storage_account_name: stealthpuppy.blob.core.windows.net

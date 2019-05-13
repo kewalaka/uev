@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="6" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2019-05-13" time="23:10:41">
+  <environment user="appveyor" machine-name="APPVYR-WIN" cwd="C:\projects\uev" user-domain="APPVYR-WIN" platform="Microsoft Windows Server 2012 R2 Datacenter|C:\windows|\Device\Harddisk0\Partition5" nunit-version="2.5.8.0" os-version="6.3.9600" clr-version="4.0.30319.42000" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="1.1205" asserts="0" description="Pester">
+    <results>
+      <test-suite type="TestFixture" name="C:\projects\uev\tests\Template.Tests.ps1" executed="True" result="Success" success="True" time="1.1205" asserts="0" description="C:\projects\uev\tests\Template.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Template format tests" executed="True" result="Success" success="True" time="0.9548" asserts="0" description="Template format tests">
+            <results>
+              <test-case description="AdobeReaderDC.xml should be an .XML file" name="Template format tests.AdobeReaderDC.xml should be an .XML file" time="0.2604" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="AdobeReaderDC.xml should be in XML format" name="Template format tests.AdobeReaderDC.xml should be in XML format" time="0.0432" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GoogleChrome.xml should be an .XML file" name="Template format tests.GoogleChrome.xml should be an .XML file" time="0.0029" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GoogleChrome.xml should be in XML format" name="Template format tests.GoogleChrome.xml should be in XML format" time="0.0203" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="MozillaFirefox.xml should be an .XML file" name="Template format tests.MozillaFirefox.xml should be an .XML file" time="0.0027" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="MozillaFirefox.xml should be in XML format" name="Template format tests.MozillaFirefox.xml should be in XML format" time="0.0031" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

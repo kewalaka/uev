@@ -3,10 +3,11 @@
         Pester tests
 #>
 
-#region Tests
+# Variables
 $path = Join-Path $projectRoot "templates"
 $templates = Get-ChildItem -Path $path -Recurse -Include *.*
 
+#region Tests
 Describe "Template file type tests" {
     ForEach ($template in $templates) {
         It "$($template.Name) should be an .XML file" {

@@ -14,6 +14,8 @@ test_script:
 artifacts:
 - path: templates
   name: templates
+- path: scripts
+  name: scripts
 before_deploy:
 - ps: . .\ci\Pre-Deploy.ps1
 deploy:
@@ -25,6 +27,16 @@ deploy:
   artifact: templates
   unzip: true
   set_content_type: true
+  on:
+    branch: master
+- provider: AzureBlob
+  storage_account_name: stealthpuppy
+  storage_access_key:
+    secure: No4/BI8lrkv/775GwkL82PPYuaX1hzYaXnW1bPiE3WyrwQJTc4ouDLI4Gx/nBm6DFuPmPlVF5VhMST+cQKhAvpW1goTVXpTf+Js+D2jLdTo=
+  container: scripts
+  artifact: scripts
+  unzip: true
+  set_content_type: false
   on:
     branch: master
 

@@ -1,3 +1,8 @@
+<#
+    .SYNOPSIS
+        Output variables for testing.
+#>
+
 Write-Host "$env:APPVEYOR"
 Write-Host "$env:APPVEYOR_API_URL"
 Write-Host "$env:APPVEYOR_ACCOUNT_NAME"

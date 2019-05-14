@@ -6,16 +6,16 @@ environment:
   GitHubKey:
     secure: 085aq77wGuI+EI1wXVyiB8ERrsksUfSVrPjoxCzusqT8SFnY/Sb8P0PsKqvhybgF
 install:
-- ps: . .\scripts\Install.ps1
+- ps: . .\ci\Install.ps1
 build_script:
-- ps: . .\scripts\Build.ps1
+- ps: . .\ci\Build.ps1
 test_script:
-- ps: . .\scripts\Tests.ps1
+- ps: . .\ci\Tests.ps1
 artifacts:
 - path: templates
   name: templates
 before_deploy:
-- ps: . .\scripts\Pre-Deploy.ps1
+- ps: . .\ci\Pre-Deploy.ps1
 deploy:
 - provider: AzureBlob
   storage_account_name: stealthpuppy

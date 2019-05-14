@@ -1,21 +1,22 @@
-# AppVeyor Testing
-If (Test-Path 'env:APPVEYOR_BUILD_FOLDER') {
-    $projectRoot = $env:APPVEYOR_BUILD_FOLDER
-}
-Else {
-    # Local Testing 
-    $projectRoot = ((Get-Item (Split-Path -Parent -Path $MyInvocation.MyCommand.Definition)).Parent).FullName
-}
+<#
+    .SYNOPSIS
+        Pester tests
+#>
 
 #region Tests
 $path = Join-Path $projectRoot "templates"
 $templates = Get-ChildItem -Path $path -Recurse -Include *.*
 
-Describe "Template format tests" {
+Describe "Template file type tests" {
     ForEach ($template in $templates) {
         It "$($template.Name) should be an .XML file" {
             [IO.Path]::GetExtension($template.Name) -match ".xml" | Should -Be $True
         }
+    }
+}
+
+Describe "Template XML format tests" {
+    ForEach ($template in $templates) {
         It "$($template.Name) should be in XML format" {
             Try {
                 [xml] $content = Get-Content -Path $template.FullName -Raw -ErrorAction SilentlyContinue

@@ -2,14 +2,6 @@
     .SYNOPSIS
         AppVeyor pre-deploy script.
 #>
-# AppVeyor Testing
-If (Test-Path 'env:APPVEYOR_BUILD_FOLDER') {
-    $projectRoot = $env:APPVEYOR_BUILD_FOLDER
-}
-Else {
-    # Local Testing 
-    $projectRoot = ((Get-Item (Split-Path -Parent -Path $MyInvocation.MyCommand.Definition)).Parent).FullName
-}
 
 # Line break for readability in AppVeyor console
 Write-Host -Object ''
@@ -41,11 +33,11 @@ Else {
             git config --global core.safecrlf false
 
             # Push changes to GitHub
-            git checkout master
+            git checkout master | Out-Null
             git add --all
             git status
             git commit -s -m "AppVeyor validate: $env:APPVEYOR_BUILD_VERSION"
-            git push origin master
+            git push origin master | Out-Null
             Write-Host "$env:APPVEYOR_BUILD_VERSION pushed to GitHub." -ForegroundColor Cyan
         }
         Catch {

@@ -4,16 +4,17 @@
 #>
 # AppVeyor Testing
 If (Test-Path 'env:APPVEYOR_BUILD_FOLDER') {
-    $projectRoot = $env:APPVEYOR_BUILD_FOLDER
+    $projectRoot = Resolve-Path -Path $env:APPVEYOR_BUILD_FOLDER
 }
 Else {
     # Local Testing 
-    $projectRoot = ((Get-Item (Split-Path -Parent -Path $MyInvocation.MyCommand.Definition)).Parent).FullName
+    $projectRoot = Resolve-Path -Path (((Get-Item (Split-Path -Parent -Path $MyInvocation.MyCommand.Definition)).Parent).FullName)
 }
 
 # Line break for readability in AppVeyor console
 Write-Host -Object ''
 Write-Host "PowerShell Version:" $PSVersionTable.PSVersion.tostring()
+Write-Host "projectRoot is: $projectRoot."
 
 # Install packages
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force

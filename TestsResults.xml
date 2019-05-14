@@ -1,27 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="10" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2019-05-14" time="11:57:07">
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="12" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2019-05-14" time="23:15:11">
   <environment user="appveyor" machine-name="APPVYR-WIN" cwd="C:\projects\uev" user-domain="APPVYR-WIN" platform="Microsoft Windows Server 2012 R2 Datacenter|C:\windows|\Device\Harddisk0\Partition5" nunit-version="2.5.8.0" os-version="6.3.9600" clr-version="4.0.30319.42000" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="1.311" asserts="0" description="Pester">
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="4.9838" asserts="0" description="Pester">
     <results>
-      <test-suite type="TestFixture" name="C:\projects\uev\tests\Template.Tests.ps1" executed="True" result="Success" success="True" time="1.311" asserts="0" description="C:\projects\uev\tests\Template.Tests.ps1">
+      <test-suite type="TestFixture" name="C:\projects\uev\tests\Scripts.Tests.ps1" executed="True" result="Success" success="True" time="4.7464" asserts="0" description="C:\projects\uev\tests\Scripts.Tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="Template file type tests" executed="True" result="Success" success="True" time="0.996" asserts="0" description="Template file type tests">
+          <test-suite type="TestFixture" name="Script validation" executed="True" result="Success" success="True" time="4.564" asserts="0" description="Script validation">
             <results>
-              <test-case description="AdobeReaderDC.xml should be an .XML file" name="Template file type tests.AdobeReaderDC.xml should be an .XML file" time="0.29" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="GoogleChrome.xml should be an .XML file" name="Template file type tests.GoogleChrome.xml should be an .XML file" time="0.0028" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="MozillaFirefox.xml should be an .XML file" name="Template file type tests.MozillaFirefox.xml should be an .XML file" time="0.003" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="PaintDotNet.xml should be an .XML file" name="Template file type tests.PaintDotNet.xml should be an .XML file" time="0.0108" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="RemoteDesktopConnection.xml should be an .XML file" name="Template file type tests.RemoteDesktopConnection.xml should be an .XML file" time="0.0027" asserts="0" success="True" result="Success" executed="True" />
+              <test-suite type="ParameterizedTest" name="Script validation.Script &lt;file&gt; should be valid PowerShell" executed="True" result="Success" success="True" time="0.297" asserts="0" description="Script &lt;file&gt; should be valid PowerShell">
+                <results>
+                  <test-case description="Script C:\projects\uev\scripts\Set-Uev.ps1 should be valid PowerShell" name="Script validation.Script C:\projects\uev\scripts\Set-Uev.ps1 should be valid PowerShell" time="0.297" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="ParameterizedTest" name="Script validation.&lt;file&gt; should pass ScriptAnalyzer" executed="True" result="Success" success="True" time="3.1524" asserts="0" description="&lt;file&gt; should pass ScriptAnalyzer">
+                <results>
+                  <test-case description="C:\projects\uev\scripts\Set-Uev.ps1 should pass ScriptAnalyzer" name="Script validation.C:\projects\uev\scripts\Set-Uev.ps1 should pass ScriptAnalyzer" time="3.1524" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
             </results>
           </test-suite>
-          <test-suite type="TestFixture" name="Template XML format tests" executed="True" result="Success" success="True" time="0.1338" asserts="0" description="Template XML format tests">
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\projects\uev\tests\Template.Tests.ps1" executed="True" result="Success" success="True" time="0.2374" asserts="0" description="C:\projects\uev\tests\Template.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Template file type tests" executed="True" result="Success" success="True" time="0.1167" asserts="0" description="Template file type tests">
             <results>
-              <test-case description="AdobeReaderDC.xml should be in XML format" name="Template XML format tests.AdobeReaderDC.xml should be in XML format" time="0.0421" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="GoogleChrome.xml should be in XML format" name="Template XML format tests.GoogleChrome.xml should be in XML format" time="0.0032" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="MozillaFirefox.xml should be in XML format" name="Template XML format tests.MozillaFirefox.xml should be in XML format" time="0.0029" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="PaintDotNet.xml should be in XML format" name="Template XML format tests.PaintDotNet.xml should be in XML format" time="0.0155" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="RemoteDesktopConnection.xml should be in XML format" name="Template XML format tests.RemoteDesktopConnection.xml should be in XML format" time="0.0041" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="AdobeReaderDC.xml should be an .XML file" name="Template file type tests.AdobeReaderDC.xml should be an .XML file" time="0.0462" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GoogleChrome.xml should be an .XML file" name="Template file type tests.GoogleChrome.xml should be an .XML file" time="0.0028" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="MozillaFirefox.xml should be an .XML file" name="Template file type tests.MozillaFirefox.xml should be an .XML file" time="0.0034" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="PaintDotNet.xml should be an .XML file" name="Template file type tests.PaintDotNet.xml should be an .XML file" time="0.0034" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="RemoteDesktopConnection.xml should be an .XML file" name="Template file type tests.RemoteDesktopConnection.xml should be an .XML file" time="0.0029" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="Template XML format tests" executed="True" result="Success" success="True" time="0.1055" asserts="0" description="Template XML format tests">
+            <results>
+              <test-case description="AdobeReaderDC.xml should be in XML format" name="Template XML format tests.AdobeReaderDC.xml should be in XML format" time="0.0509" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GoogleChrome.xml should be in XML format" name="Template XML format tests.GoogleChrome.xml should be in XML format" time="0.0034" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="MozillaFirefox.xml should be in XML format" name="Template XML format tests.MozillaFirefox.xml should be in XML format" time="0.0032" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="PaintDotNet.xml should be in XML format" name="Template XML format tests.PaintDotNet.xml should be in XML format" time="0.0033" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="RemoteDesktopConnection.xml should be in XML format" name="Template XML format tests.RemoteDesktopConnection.xml should be in XML format" time="0.0034" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
         </results>

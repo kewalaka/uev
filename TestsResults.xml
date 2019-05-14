@@ -1,23 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="6" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2019-05-14" time="05:42:45">
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="8" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2019-05-14" time="06:36:26">
   <environment user="appveyor" machine-name="APPVYR-WIN" cwd="C:\projects\uev" user-domain="APPVYR-WIN" platform="Microsoft Windows Server 2012 R2 Datacenter|C:\windows|\Device\Harddisk0\Partition5" nunit-version="2.5.8.0" os-version="6.3.9600" clr-version="4.0.30319.42000" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="1.1223" asserts="0" description="Pester">
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="1.0665" asserts="0" description="Pester">
     <results>
-      <test-suite type="TestFixture" name="C:\projects\uev\tests\Template.Tests.ps1" executed="True" result="Success" success="True" time="1.1223" asserts="0" description="C:\projects\uev\tests\Template.Tests.ps1">
+      <test-suite type="TestFixture" name="C:\projects\uev\tests\Template.Tests.ps1" executed="True" result="Success" success="True" time="1.0665" asserts="0" description="C:\projects\uev\tests\Template.Tests.ps1">
         <results>
-          <test-suite type="TestFixture" name="Template file type tests" executed="True" result="Success" success="True" time="0.8506" asserts="0" description="Template file type tests">
+          <test-suite type="TestFixture" name="Template file type tests" executed="True" result="Success" success="True" time="0.7808" asserts="0" description="Template file type tests">
             <results>
-              <test-case description="AdobeReaderDC.xml should be an .XML file" name="Template file type tests.AdobeReaderDC.xml should be an .XML file" time="0.2631" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="GoogleChrome.xml should be an .XML file" name="Template file type tests.GoogleChrome.xml should be an .XML file" time="0.0095" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="MozillaFirefox.xml should be an .XML file" name="Template file type tests.MozillaFirefox.xml should be an .XML file" time="0.003" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="AdobeReaderDC.xml should be an .XML file" name="Template file type tests.AdobeReaderDC.xml should be an .XML file" time="0.2323" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GoogleChrome.xml should be an .XML file" name="Template file type tests.GoogleChrome.xml should be an .XML file" time="0.003" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="MicrosoftInternetExplorer2013.xml should be an .XML file" name="Template file type tests.MicrosoftInternetExplorer2013.xml should be an .XML file" time="0.0028" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="MozillaFirefox.xml should be an .XML file" name="Template file type tests.MozillaFirefox.xml should be an .XML file" time="0.0026" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
-          <test-suite type="TestFixture" name="Template XML format tests" executed="True" result="Success" success="True" time="0.0963" asserts="0" description="Template XML format tests">
+          <test-suite type="TestFixture" name="Template XML format tests" executed="True" result="Success" success="True" time="0.1195" asserts="0" description="Template XML format tests">
             <results>
-              <test-case description="AdobeReaderDC.xml should be in XML format" name="Template XML format tests.AdobeReaderDC.xml should be in XML format" time="0.0456" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="GoogleChrome.xml should be in XML format" name="Template XML format tests.GoogleChrome.xml should be in XML format" time="0.0034" asserts="0" success="True" result="Success" executed="True" />
-              <test-case description="MozillaFirefox.xml should be in XML format" name="Template XML format tests.MozillaFirefox.xml should be in XML format" time="0.003" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="AdobeReaderDC.xml should be in XML format" name="Template XML format tests.AdobeReaderDC.xml should be in XML format" time="0.0475" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GoogleChrome.xml should be in XML format" name="Template XML format tests.GoogleChrome.xml should be in XML format" time="0.0068" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="MicrosoftInternetExplorer2013.xml should be in XML format" name="Template XML format tests.MicrosoftInternetExplorer2013.xml should be in XML format" time="0.0039" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="MozillaFirefox.xml should be in XML format" name="Template XML format tests.MozillaFirefox.xml should be in XML format" time="0.0026" asserts="0" success="True" result="Success" executed="True" />
             </results>
           </test-suite>
         </results>

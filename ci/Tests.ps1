@@ -4,9 +4,6 @@
 #>
 
 If (Get-Variable -Name projectRoot -ErrorAction SilentlyContinue) {
-    #Variables
-    $tests = Join-Path $projectRoot "tests"
-    $output = Join-Path $projectRoot "TestsResults.xml"
 
     # Invoke Pester tests and upload results to AppVeyor
     $res = Invoke-Pester -Path $tests -OutputFormat NUnitXml -OutputFile $output -PassThru

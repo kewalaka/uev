@@ -21,3 +21,18 @@ Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 Install-Module -Name Pester -SkipPublisherCheck -Force
 Install-Module -Name PSScriptAnalyzer -SkipPublisherCheck -Force
 Install-Module -Name posh-git -Force
+
+# Variables
+$path = Join-Path $projectRoot "templates"
+$tests = Join-Path $projectRoot "tests"
+$schema = Join-Path $tests "SettingsLocationTemplate.xsd"
+$output = Join-Path $projectRoot "TestsResults.xml"
+
+# Export XML validation module
+Import-Module "$tests\Test-XmlSchema.psm1"
+
+# Echo paths
+Write-Host "Templates path: $path"
+Write-Host "Tests path: $tests"
+Write-Host "Schema path: $schema"
+Write-Host "Output path: $output"

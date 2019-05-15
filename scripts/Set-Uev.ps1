@@ -142,7 +142,7 @@ Function Test-Windows10Enterprise {
 }
 
 Function Get-RandomString {
-    -join ((65..90) + (97..122) | Get-Random -Count 8 | ForEach-Object {[char]$_})
+    -join ((65..90) + (97..122) | Get-Random -Count 8 | ForEach-Object { [char]$_ })
 }
 #endregion
 
@@ -171,80 +171,99 @@ If (Test-Windows10Enterprise) {
         Write-Error "UEV module not installed."
     }
 
-    # Determine the UEV settings storage path in the OneDrive folder
-    If (Test-Path -Path "env:OneDriveCommercial") {
-        $settingsStoragePath = "%OneDriveCommercial%"
-        Write-Verbose -Message "UE-V Settings Storage Path is $settingsStoragePath."
-    }
-    ElseIf (Test-Path -Path "env:OneDrive") {
-        $settingsStoragePath = "%OneDrive%"
-        Write-Verbose -Message "UE-V Settings Storage Path is $settingsStoragePath."
-    }
-    Else {
-        Write-Warning "OneDrive path not found."
-    }
-
-    # Set the UEV settings. These settings will work for UEV in OneDrive with Enterprise State Roaming enabled
-    # https://docs.microsoft.com/en-us/azure/active-directory/devices/enterprise-state-roaming-faqs
     If ($status.UevEnabled -eq $True) {
-        $UevParams = @{
-            Computer                            = $True
-            DisableSyncProviderPing             = $True
-            DisableWaitForSyncOnLogon           = $True
-            DisableSyncUnlistedWindows8Apps     = $True
-            EnableDontSyncWindows8AppSettings   = $True
-            EnableSettingsImportNotify          = $True
-            EnableSync                          = $True
-            EnableWaitForSyncOnApplicationStart = $True
-            SettingsStoragePath                 = $settingsStoragePath
-            SyncMethod                          = "External"
-            WaitForSyncTimeoutInMilliseconds    = "2000"
+
+        # Templates local target path
+        $inboxTemplatesSrc = "$env:ProgramData\Microsoft\UEV\InboxTemplates"
+        $templatesTemp = Join-Path (Resolve-Path -Path $env:Temp) (Get-RandomString)
+        Try {
+            Write-Verbose "Creating temp folder: $templatesTemp."
+            New-Item -Path $templatesTemp -ItemType Directory -Force | Out-Null
         }
-        Set-UevConfiguration @UevParams
-    }
+        Catch {
+            Write-Warning "Failed to create target: $templatesTemp."
+        }
 
-    # Templates local target path
-    $inboxTemplatesSrc = "$env:ProgramData\Microsoft\UEV\InboxTemplates"
-    $templatesTemp = Join-Path (Resolve-Path -Path $env:Temp) (Get-RandomString)
-    New-Item -Path $templatesTemp -ItemType Directory -Force
-
-    # Copy the UEV templates from an Azure Storage account
-    If (Test-Path -Path $inboxTemplatesSrc) {
+        # Copy the UEV templates from an Azure Storage account
+        If (Test-Path -Path $inboxTemplatesSrc) {
     
-        # Retrieve the list of templates from the Azure Storage account
-        $srcTemplates = Get-AzureBlobItem -Uri $Uri
+            # Retrieve the list of templates from the Azure Storage account
+            $srcTemplates = Get-AzureBlobItem -Uri $Uri
 
-        # Download each template to the target path and track success
-        ForEach ($template in $srcTemplates) {
-            Try {
-                $target = "$templatesTemp\$(Split-Path -Path $template.Url -Leaf)"
-                Invoke-WebRequest -Uri $template.Url -OutFile $target -UseBasicParsing `
-                    -Headers @{ "x-ms-version" = "2015-02-21" } -ErrorAction SilentlyContinue
+            # Download each template to the target path and track success
+            $downloadedTemplates = @()
+            ForEach ($template in $srcTemplates) {
+                Try {
+                    $target = "$templatesTemp\$(Split-Path -Path $template.Url -Leaf)"
+                    Invoke-WebRequest -Uri $template.Url -OutFile $target -UseBasicParsing `
+                        -Headers @{ "x-ms-version" = "2015-02-21" } -ErrorAction SilentlyContinue
+                }
+                Catch {
+                    $failure = $True
+                }
+                If (!($failure)) {
+                    $downloadedTemplates += $target
+                    $Templates += $(Split-Path -Path $template.Url -Leaf)
+                }            
             }
-            Catch {
-                $failure = $True
+
+            # Move downloaded templates to the template store
+            ForEach ($template in $downloadedTemplates) {
+                Write-Verbose "Moving template: $template."
+                Move-Item -Path $template -Destination $inboxTemplatesSrc -Force
             }
-            If (!($failure)) {
-                $downloadedTemplates += $target
-                $Templates += $(Split-Path -Path $template.Url -Leaf)
-            }            
-        }
 
-        # Move downloaded templates to the template store
-        ForEach ($template in $downloadedTemplates) {
-            Move-Item -Path $template -Destination $inboxTemplatesSrc -Force
-        }
+            Write-Verbose "Removing temp folder: $templatesTemp."
+            Remove-Item -Path $templatesTemp -Recurse -Force
 
-        # Unregister existing templates
-        Get-UevTemplate | Unregister-UevTemplate -ErrorAction SilentlyContinue
+            # Unregister existing templates
+            Write-Verbose "Unregistering existing templates."
+            Get-UevTemplate | Unregister-UevTemplate -ErrorAction SilentlyContinue
 
-        # Register specified templates
-        ForEach ($template in $Templates) {
-            Register-UevTemplate -Path "$inboxTemplatesSrc\$template"
+            # Register specified templates
+            ForEach ($template in $Templates) {
+                Write-Verbose "Registering template: $template."
+                Register-UevTemplate -Path "$inboxTemplatesSrc\$template"
+            }
+
+            # If the templates registered successfull, configure the client
+            If (Get-UevTemplate | Out-Null) {
+                # Determine the UEV settings storage path in the OneDrive folder
+                If (Test-Path -Path "env:OneDriveCommercial") {
+                    $settingsStoragePath = "%OneDriveCommercial%"
+                    Write-Verbose -Message "UE-V Settings Storage Path is $settingsStoragePath."
+                }
+                ElseIf (Test-Path -Path "env:OneDrive") {
+                    $settingsStoragePath = "%OneDrive%"
+                    Write-Verbose -Message "UE-V Settings Storage Path is $settingsStoragePath."
+                }
+                Else {
+                    Write-Warning "OneDrive path not found."
+                }
+
+                # Set the UEV settings. These settings will work for UEV in OneDrive with Enterprise State Roaming enabled
+                # https://docs.microsoft.com/en-us/azure/active-directory/devices/enterprise-state-roaming-faqs
+                If ($status.UevEnabled -eq $True) {
+                    $UevParams = @{
+                        Computer                            = $True
+                        DisableSyncProviderPing             = $True
+                        DisableWaitForSyncOnLogon           = $True
+                        DisableSyncUnlistedWindows8Apps     = $True
+                        EnableDontSyncWindows8AppSettings   = $True
+                        EnableSettingsImportNotify          = $True
+                        EnableSync                          = $True
+                        EnableWaitForSyncOnApplicationStart = $True
+                        SettingsStoragePath                 = $settingsStoragePath
+                        SyncMethod                          = "External"
+                        WaitForSyncTimeoutInMilliseconds    = "2000"
+                    }
+                    Set-UevConfiguration @UevParams
+                }
+            }
         }
-    }
-    Else {
-        Write-Warning "Path does not exist: $inboxTemplatesSrc."
+        Else {
+            Write-Warning "Path does not exist: $inboxTemplatesSrc."
+        }
     }
 }
 Else {

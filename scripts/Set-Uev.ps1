@@ -57,7 +57,7 @@
     .EXAMPLE
         Set-Uev.ps1
 #>
-[CmdletBinding(SupportsShouldProcess = $True, HelpURI = "https://github.com/aaronparker/Intune-Scripts/tree/master/Uev")]
+[CmdletBinding(SupportsShouldProcess = $True, HelpURI = "https://github.com/aaronparker/uev/tree/master/")]
 [OutputType([String])]
 Param (
     [Parameter(Mandatory = $false)]
@@ -94,7 +94,7 @@ Function Get-AzureBlobItem {
             The URL must include the List Container request URI. See https://docs.microsoft.com/en-us/rest/api/storageservices/list-containers2 for more information.
         
         .EXAMPLE
-            Get-AzureBlobItems -Url "https://aaronparker.blob.core.windows.net/folder/?comp=list"
+            Get-AzureBlobItems -Uri "https://aaronparker.blob.core.windows.net/folder/?comp=list"
 
             Description:
             Returns the list of files from the supplied URL, with Name, URL, Size and Last Modifed properties for each item.

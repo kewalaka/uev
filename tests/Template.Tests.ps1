@@ -4,7 +4,8 @@
 #>
 
 # Variables
-$templates = Get-ChildItem -Path $path -Recurse -Include *.*
+$srcPath = Join-Path $projectRoot "templates"
+$templates = Get-ChildItem -Path $srcPath -Recurse -Include *.*
 
 #region Tests
 Describe "Template file type tests" {

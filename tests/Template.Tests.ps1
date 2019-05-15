@@ -10,10 +10,10 @@ $schema = Join-Path $tests "SettingsLocationTemplate.xsd"
 $templates = Get-ChildItem -Path $path -Recurse -Include *.*
 
 # Export XML validation module
-. "$projectRoot\tests\Test-XmlSchema.psm1"
+Import-Module "$projectRoot\tests\Test-XmlSchema.psm1"
 
 # Echo paths
-Write-Host "Templates path: $templates"
+Write-Host "Templates path: $path"
 Write-Host "Tests path: $tests"
 
 #region Tests

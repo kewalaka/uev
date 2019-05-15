@@ -24,6 +24,9 @@ Else {
             $env:Path += ";$env:ProgramFiles\Git\cmd"
             Import-Module posh-git -ErrorAction Stop
 
+            # Dot source Invoke-Process.ps1. Prevent 'RemoteException' error when running specific git commands
+            . $projectRoot\ci\Invoke-Process.ps1
+
             # Configure the git environment
             git config --global credential.helper store
             Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GitHubKey):x-oauth-basic@github.com`n"
@@ -33,11 +36,11 @@ Else {
             git config --global core.safecrlf false
 
             # Push changes to GitHub
-            git checkout master | Out-Null
+            Invoke-Process -FilePath "git" -ArgumentList "checkout master"
             git add --all
             git status
             git commit -s -m "AppVeyor validate: $env:APPVEYOR_BUILD_VERSION"
-            git push origin master | Out-Null
+            Invoke-Process -FilePath "git" -ArgumentList "push origin master"
             Write-Host "$env:APPVEYOR_BUILD_VERSION pushed to GitHub." -ForegroundColor Cyan
         }
         Catch {

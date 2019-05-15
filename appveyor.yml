@@ -36,7 +36,7 @@ deploy:
   container: scripts
   artifact: scripts
   unzip: true
-  set_content_type: true
+  set_content_type: false
   on:
     branch: master
 

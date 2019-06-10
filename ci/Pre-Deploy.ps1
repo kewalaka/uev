@@ -21,11 +21,11 @@ Else {
         # Publish the new version back to Master on GitHub
         Try {
             # Set up a path to the git.exe cmd, import posh-git to give us control over git
-            $env:Path += ";$env:ProgramFiles\Git\cmd"
+            $env:Path += ";$(Join-Path -Path $env:ProgramFiles -ChildPath "Git" -AdditionalChildPath "cmd")"
             Import-Module posh-git -ErrorAction Stop
 
             # Dot source Invoke-Process.ps1. Prevent 'RemoteException' error when running specific git commands
-            . $projectRoot\ci\Invoke-Process.ps1
+            . (Join-Path -Path $projectRoot -ChildPath "ci" -AdditionalChildPath "Invoke-Process.ps1")
 
             # Configure the git environment
             git config --global credential.helper store

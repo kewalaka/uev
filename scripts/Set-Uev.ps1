@@ -61,11 +61,11 @@
 [OutputType([String])]
 Param (
     [Parameter(Mandatory = $false)]
-    [string] $Uri = "https://stealthpuppy.blob.core.windows.net/uevtemplates/?comp=list",
+    [System.String] $Uri = "https://stealthpuppy.blob.core.windows.net/uevtemplates/?comp=list",
 
     [Parameter(Mandatory = $false)]
     # Inbox templates to enable. Templates downloaded from $Uri will be added to this list
-    [string[]] $Templates = @("MicrosoftNotepad.xml", "MicrosoftWordpad.xml", "MicrosoftInternetExplorer2013.xml")
+    [System.String[]] $Templates = @("MicrosoftNotepad.xml", "MicrosoftWordpad.xml", "MicrosoftInternetExplorer2013.xml")
 )
 
 # Configure
@@ -86,9 +86,6 @@ Function Get-AzureBlobItem {
             Author: Aaron Parker
             Twitter: @stealthpuppy
 
-        .LINK
-            https://stealthpuppy.com
-
         .PARAMETER Url
             The Azure blob storage container URL. The container must be enabled for anonymous read access.
             The URL must include the List Container request URI. See https://docs.microsoft.com/en-us/rest/api/storageservices/list-containers2 for more information.
@@ -98,32 +95,44 @@ Function Get-AzureBlobItem {
 
             Description:
             Returns the list of files from the supplied URL, with Name, URL, Size and Last Modifed properties for each item.
-
-        .OUTPUTS
-            Returns System.Array
     #>
     [CmdletBinding(SupportsShouldProcess = $False)]
+    [OutputType([System.Management.Automation.PSObject])]
     Param (
         [Parameter(ValueFromPipeline = $True, Mandatory = $True, HelpMessage = "Azure blob storage URL with List Containers request URI '?comp=list'.")]
         [ValidatePattern("^(http|https)://")]
-        [string] $Uri
+        [System.String] $Uri
     )
 
     # Get response from Azure blog storage; Convert contents into usable XML, removing extraneous leading characters
-    Try { $list = Invoke-WebRequest -Uri $Uri -UseBasicParsing -ErrorAction Stop } Catch [Exception] { Write-Warning $_; Break }
-    [xml] $xml = $list.Content.Substring($list.Content.IndexOf("<?xml", 0))
-
-    # Build an object with file properties to return on the pipeline
-    $output = @()
-    ForEach ($node in (Select-Xml -XPath "//Blobs/Blob" -Xml $Xml).Node) {
-        $item = New-Object -TypeName PSObject
-        $item | Add-Member -Type NoteProperty -Name 'Name' -Value ($node | Select-Object -ExpandProperty Name)
-        $item | Add-Member -Type NoteProperty -Name 'Url' -Value ($node | Select-Object -ExpandProperty Url)
-        $item | Add-Member -Type NoteProperty -Name 'Size' -Value ($node | Select-Object -ExpandProperty Size)
-        $item | Add-Member -Type NoteProperty -Name 'LastModified' -Value ($node | Select-Object -ExpandProperty LastModified)
-        $output += $item
+    try {
+        $list = Invoke-WebRequest -Uri $Uri -UseBasicParsing -ErrorAction Stop
     }
-    Write-Output $output
+    catch [System.Net.WebException] {
+        Write-Warning -Message ([string]::Format("Error : {0}", $_.Exception.Message))
+    }
+    catch [System.Exception] {
+        Write-Warning -Message "$($MyInvocation.MyCommand): failed to download: $url."
+        Throw $_.Exception.Message
+    }
+    If ($Null -ne $list) {
+        [System.Xml.XmlDocument] $xml = $list.Content.Substring($list.Content.IndexOf("<?xml", 0))
+
+        # Build an object with file properties to return on the pipeline
+        $fileList = New-Object -TypeName System.Collections.ArrayList
+        ForEach ($node in (Select-Xml -XPath "//Blobs/Blob" -Xml $xml).Node) {
+            $PSObject = [PSCustomObject] @{
+                Name         = ($node | Select-Object -ExpandProperty Name)
+                Url          = ($node | Select-Object -ExpandProperty Url)
+                Size         = ($node | Select-Object -ExpandProperty Size)
+                LastModified = ($node | Select-Object -ExpandProperty LastModified)
+            }
+            $fileList.Add($PSObject) | Out-Null
+        }
+        If ($Null -ne $fileList) {
+            Write-Output -InputObject $fileList
+        }
+    }
 }
 
 Function Test-Windows10Enterprise {
@@ -131,13 +140,13 @@ Function Test-Windows10Enterprise {
         $edition = Get-WindowsEdition -Online -ErrorAction SilentlyContinue
     }
     Catch {
-        Write-Error "Failed to run Get-WindowsEdition. Defaulting to False."
+        Write-Error "$($MyInvocation.MyCommand): Failed to run Get-WindowsEdition. Defaulting to False."
     }
     If ($edition.Edition -eq "Enterprise") {
-        Write-Output $True
+        Write-Output -InputObject $True
     }
     Else {
-        Write-Output $False
+        Write-Output -InputObject $False
     }
 }
 
@@ -156,32 +165,32 @@ If (Test-Windows10Enterprise) {
         # Enable the UE-V service
         $status = Get-UevStatus
         If ($status.UevEnabled -ne $True) {
-            Write-Verbose -Message "Enabling the UE-V service."
+            Write-Verbose -Message "$($MyInvocation.MyCommand): Enabling the UE-V service."
             Enable-Uev
             $status = Get-UevStatus
         }
         Else {
-            Write-Verbose "UE-V service is enabled."
+            Write-Verbose -Message "$($MyInvocation.MyCommand): UE-V service is enabled."
         }
         If ($status.UevRebootRequired -eq $True) {
-            Write-Warning "Reboot required to enable the UE-V service."
+            Write-Warning -Message "$($MyInvocation.MyCommand): Reboot required to enable the UE-V service."
         }
     }
     Else {
-        Write-Error "UEV module not installed."
+        Write-Error -Message "$($MyInvocation.MyCommand): UEV module not installed."
     }
 
     If ($status.UevEnabled -eq $True) {
 
         # Templates local target path
-        $inboxTemplatesSrc = "$env:ProgramData\Microsoft\UEV\InboxTemplates"
-        $templatesTemp = Join-Path (Resolve-Path -Path $env:Temp) (Get-RandomString)
+        $inboxTemplatesSrc = Join-Path -Path $env:ProgramData -ChildPath "Microsoft" -AdditionalChildPath "UEV", "InboxTemplates"
+        $templatesTemp = Join-Path -Path (Resolve-Path -Path $env:Temp) -ChildPath (Get-RandomString)
         Try {
-            Write-Verbose "Creating temp folder: $templatesTemp."
+            Write-Verbose -Message "$($MyInvocation.MyCommand): Creating temp folder: $templatesTemp."
             New-Item -Path $templatesTemp -ItemType Directory -Force | Out-Null
         }
         Catch {
-            Write-Warning "Failed to create target: $templatesTemp."
+            Write-Warning -Message "$($MyInvocation.MyCommand): Failed to create target: $templatesTemp."
         }
 
         # Copy the UEV templates from an Azure Storage account
@@ -191,38 +200,50 @@ If (Test-Windows10Enterprise) {
             $srcTemplates = Get-AzureBlobItem -Uri $Uri
 
             # Download each template to the target path and track success
-            $downloadedTemplates = @()
+            $downloadedTemplates = New-Object -TypeName System.Collections.ArrayList
             ForEach ($template in $srcTemplates) {
+                $targetTemplate = Join-Path -Path $templatesTemp -ChildPath $(Split-Path -Path $template.Url -Leaf)
                 Try {
-                    $target = "$templatesTemp\$(Split-Path -Path $template.Url -Leaf)"
-                    Invoke-WebRequest -Uri $template.Url -OutFile $target -UseBasicParsing `
-                        -Headers @{ "x-ms-version" = "2015-02-21" } -ErrorAction SilentlyContinue
+                    $iwrParams = @{
+                        Uri              = $template.Url
+                        OutFile          = $targetTemplate
+                        $UseBasicParsing = $True
+                        Headers          = @{ "x-ms-version" = "2015-02-21" }
+                        ErrorAction      = "SilentlyContinue"
+                    }
+                    Invoke-WebRequest $iwrParams
                 }
-                Catch {
+                catch [System.Net.WebException] {
+                    Write-Warning -Message ([string]::Format("Error : {0}", $_.Exception.Message))
+                    $failure = $True
+                }
+                catch [System.Exception] {
+                    Write-Warning -Message "$($MyInvocation.MyCommand): failed to download: $url."
+                    Throw $_.Exception.Message
                     $failure = $True
                 }
                 If (!($failure)) {
-                    $downloadedTemplates += $target
-                    $Templates += $(Split-Path -Path $template.Url -Leaf)
+                    $downloadedTemplates.Add($targetTemplate)
+                    $Templates.Add($(Split-Path -Path $template.Url -Leaf))
                 }            
             }
 
             # Move downloaded templates to the template store
             ForEach ($template in $downloadedTemplates) {
-                Write-Verbose "Moving template: $template."
+                Write-Verbose -Message "Moving template: $template."
                 Move-Item -Path $template -Destination $inboxTemplatesSrc -Force
             }
 
-            Write-Verbose "Removing temp folder: $templatesTemp."
+            Write-Verbose -Message "$($MyInvocation.MyCommand): Removing temp folder: $templatesTemp."
             Remove-Item -Path $templatesTemp -Recurse -Force
 
             # Unregister existing templates
-            Write-Verbose "Unregistering existing templates."
+            Write-Verbose -Message "Unregistering existing templates."
             Get-UevTemplate | Unregister-UevTemplate -ErrorAction SilentlyContinue
 
             # Register specified templates
             ForEach ($template in $Templates) {
-                Write-Verbose "Registering template: $template."
+                Write-Verbose -Message "$($MyInvocation.MyCommand): Registering template: $template."
                 Register-UevTemplate -Path "$inboxTemplatesSrc\$template"
             }
 
@@ -231,14 +252,14 @@ If (Test-Windows10Enterprise) {
                 # Determine the UEV settings storage path in the OneDrive folder
                 If (Test-Path -Path "env:OneDriveCommercial") {
                     $settingsStoragePath = "%OneDriveCommercial%"
-                    Write-Verbose -Message "UE-V Settings Storage Path is $settingsStoragePath."
+                    Write-Verbose -Message "$($MyInvocation.MyCommand): UE-V Settings Storage Path is $settingsStoragePath."
                 }
                 ElseIf (Test-Path -Path "env:OneDrive") {
                     $settingsStoragePath = "%OneDrive%"
-                    Write-Verbose -Message "UE-V Settings Storage Path is $settingsStoragePath."
+                    Write-Verbose -Message "$($MyInvocation.MyCommand): UE-V Settings Storage Path is $settingsStoragePath."
                 }
                 Else {
-                    Write-Warning "OneDrive path not found."
+                    Write-Warning -Message "$($MyInvocation.MyCommand): OneDrive path not found."
                 }
 
                 # Set the UEV settings. These settings will work for UEV in OneDrive with Enterprise State Roaming enabled
@@ -262,10 +283,10 @@ If (Test-Windows10Enterprise) {
             }
         }
         Else {
-            Write-Warning "Path does not exist: $inboxTemplatesSrc."
+            Write-Warning -Message "$($MyInvocation.MyCommand): Path does not exist: $inboxTemplatesSrc."
         }
     }
 }
 Else {
-    Write-Warning "Windows 10 Enterprise is required to enable UE-V."
+    Write-Warning -Message "$($MyInvocation.MyCommand): Windows 10 Enterprise is required to enable UE-V."
 }

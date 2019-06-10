@@ -10,7 +10,7 @@ $scripts = Get-ChildItem -Path $path -Recurse -Include *.ps1
 #region Tests
 Describe "Script validation" {
     # TestCases are splatted to the script so we need hashtables
-    $testCase = $scripts | Foreach-Object {@{file = $_}}         
+    $testCase = $scripts | Foreach-Object { @{file = $_ } }         
     It "Script <file> should be valid PowerShell" -TestCases $testCase {
         param($file)
 
@@ -30,8 +30,8 @@ Describe "Script validation" {
         forEach ($rule in $scriptAnalyzerRules) {        
             if ($analysis.RuleName -contains $rule) {
                 $analysis |
-                    Where-Object RuleName -EQ $rule -outvariable failures |
-                    Out-Default
+                Where-Object RuleName -EQ $rule -outvariable failures |
+                Out-Default
                 $failures.Count | Should Be 0
             }
             

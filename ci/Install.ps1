@@ -22,9 +22,9 @@ Install-Module -Name PSScriptAnalyzer -SkipPublisherCheck -Force
 Install-Module -Name posh-git -Force
 
 # Set variables
-$tests = Join-Path $projectRoot "tests"
-$schema = Join-Path $tests "SettingsLocationTemplate.xsd"
-$output = Join-Path $projectRoot "TestsResults.xml"
+$tests = Join-Path -Path $projectRoot -ChildPath "tests"
+$schema = Join-Path -Path $tests -ChildPath "SettingsLocationTemplate.xsd"
+$output = Join-Path -Path $projectRoot -ChildPath "TestsResults.xml"
 
 # Echo variables
 Write-Host -Object ''
@@ -34,4 +34,4 @@ Write-Host "Schema path: $schema."
 Write-Host "Output path: $output."
 
 # Import XML validation module
-Import-Module "$tests\Test-XmlSchema.psm1"
+Import-Module (Join-Path -Path $tests -ChildPath "Test-XmlSchema.psm1")

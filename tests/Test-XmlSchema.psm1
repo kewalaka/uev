@@ -16,9 +16,9 @@ function Test-XmlSchema {
         [String] $SchemaPath
     )
 
-    $schemas = New-Object System.Xml.Schema.XmlSchemaSet
+    $schemas = New-Object -TypeName System.Xml.Schema.XmlSchemaSet
     $schemas.CompilationSettings.EnableUpaCheck = $false
-    $schema = ReadSchema $SchemaPath
+    $schema = Read-Schema $SchemaPath
     [void]($schemas.Add($schema))
     $schemas.Compile()
       
@@ -35,7 +35,7 @@ function Test-XmlSchema {
     }
 }
 
-Function ReadSchema {
+Function Read-Schema {
     param($SchemaPath)
     try {
         $schemaItem = Get-Item $SchemaPath

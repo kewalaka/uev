@@ -106,13 +106,19 @@ Function Get-AzureBlobItem {
 
     # Get response from Azure blog storage; Convert contents into usable XML, removing extraneous leading characters
     try {
-        $list = Invoke-WebRequest -Uri $Uri -UseBasicParsing -ErrorAction Stop
+        $iwrParams = @{
+            Uri             = $Uri
+            UseBasicParsing = $True
+            ContentType     = "application/xml"
+            ErrorAction     = "Stop"
+        }
+        $list = Invoke-WebRequest @iwrParams
     }
     catch [System.Net.WebException] {
         Write-Warning -Message ([string]::Format("Error : {0}", $_.Exception.Message))
     }
     catch [System.Exception] {
-        Write-Warning -Message "$($MyInvocation.MyCommand): failed to download: $url."
+        Write-Warning -Message "$($MyInvocation.MyCommand): failed to download: $Uri."
         Throw $_.Exception.Message
     }
     If ($Null -ne $list) {
@@ -202,35 +208,40 @@ If (Test-Windows10Enterprise) {
             # Download each template to the target path and track success
             $downloadedTemplates = New-Object -TypeName System.Collections.ArrayList
             ForEach ($template in $srcTemplates) {
-                $targetTemplate = Join-Path -Path $templatesTemp -ChildPath $(Split-Path -Path $template.Url -Leaf)
-                Try {
-                    $iwrParams = @{
-                        Uri              = $template.Url
-                        OutFile          = $targetTemplate
-                        $UseBasicParsing = $True
-                        Headers          = @{ "x-ms-version" = "2015-02-21" }
-                        ErrorAction      = "SilentlyContinue"
+
+                # Only download if the file has a .xml extension
+                If ($template.Name -like "*.xml") {
+                    $targetTemplate = Join-Path -Path $templatesTemp -ChildPath $template.Name
+                    Try {
+                        $iwrParams = @{
+                            Uri              = $template.Url
+                            OutFile          = $targetTemplate
+                            ContentType      = "text/xml"
+                            $UseBasicParsing = $True
+                            Headers          = @{ "x-ms-version" = "2017-11-09" }
+                            ErrorAction      = "SilentlyContinue"
+                        }
+                        Invoke-WebRequest @iwrParams
                     }
-                    Invoke-WebRequest $iwrParams
-                }
-                catch [System.Net.WebException] {
-                    Write-Warning -Message ([string]::Format("Error : {0}", $_.Exception.Message))
-                    $failure = $True
-                }
-                catch [System.Exception] {
-                    Write-Warning -Message "$($MyInvocation.MyCommand): failed to download: $url."
-                    Throw $_.Exception.Message
-                    $failure = $True
-                }
-                If (!($failure)) {
-                    $downloadedTemplates.Add($targetTemplate)
-                    $Templates.Add($(Split-Path -Path $template.Url -Leaf))
-                }            
+                    catch [System.Net.WebException] {
+                        Write-Warning -Message ([string]::Format("Error : {0}", $_.Exception.Message))
+                        $failure = $True
+                    }
+                    catch [System.Exception] {
+                        Write-Warning -Message "$($MyInvocation.MyCommand): failed to download: $url."
+                        Throw $_.Exception.Message
+                        $failure = $True
+                    }
+                    If (!($failure)) {
+                        $downloadedTemplates.Add($targetTemplate) | Out-Null
+                        $Templates.Add($($template.Name)) | Out-Null
+                    }
+                }          
             }
 
             # Move downloaded templates to the template store
             ForEach ($template in $downloadedTemplates) {
-                Write-Verbose -Message "Moving template: $template."
+                Write-Verbose -Message "$($MyInvocation.MyCommand): Moving template: $template."
                 Move-Item -Path $template -Destination $inboxTemplatesSrc -Force
             }
 
@@ -238,7 +249,7 @@ If (Test-Windows10Enterprise) {
             Remove-Item -Path $templatesTemp -Recurse -Force
 
             # Unregister existing templates
-            Write-Verbose -Message "Unregistering existing templates."
+            Write-Verbose -Message "$($MyInvocation.MyCommand): Unregistering existing templates."
             Get-UevTemplate | Unregister-UevTemplate -ErrorAction SilentlyContinue
 
             # Register specified templates

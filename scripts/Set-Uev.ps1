@@ -183,7 +183,7 @@ If (Test-Windows10Enterprise) {
     If ($status.UevEnabled -eq $True) {
 
         # Templates local target path
-        $inboxTemplatesSrc = Join-Path -Path $env:ProgramData -ChildPath "Microsoft" -AdditionalChildPath "UEV", "InboxTemplates"
+        $inboxTemplatesSrc = "$env:ProgramData\Microsoft\UEV\InboxTemplates"
         $templatesTemp = Join-Path -Path (Resolve-Path -Path $env:Temp) -ChildPath (Get-RandomString)
         Try {
             Write-Verbose -Message "$($MyInvocation.MyCommand): Creating temp folder: $templatesTemp."

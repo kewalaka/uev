@@ -65,7 +65,10 @@ Param (
 
     [Parameter(Mandatory = $false)]
     # Inbox templates to enable. Templates downloaded from $Uri will be added to this list
-    [System.String[]] $Templates = @("MicrosoftNotepad.xml", "MicrosoftWordpad.xml", "MicrosoftInternetExplorer2013.xml")
+    [System.String[]] $Templates = @("MicrosoftNotepad.xml", "MicrosoftWordpad.xml", "MicrosoftInternetExplorer2013.xml"),
+
+    [Parameter(Mandatory = $false)]
+    [System.String] $SettingsStoragePath = "%OneDriveCommercial%"
 )
 
 # Configure
@@ -232,46 +235,42 @@ If (Test-Windows10Enterprise) {
                         Throw $_.Exception.Message
                         $failure = $True
                     }
-                    If (!($failure)) {
+                    If ($failure) {
+                        Write-Warning -Message "Failed to download $($template.Url)."
+                    }
+                    Else {
                         $downloadedTemplates.Add($targetTemplate) | Out-Null
                         $Templates.Add($($template.Name)) | Out-Null
                     }
-                }          
+                }
             }
 
-            # Move downloaded templates to the template store
-            ForEach ($template in $downloadedTemplates) {
-                Write-Verbose -Message "$($MyInvocation.MyCommand): Moving template: $template."
-                Move-Item -Path $template -Destination $inboxTemplatesSrc -Force
+            If ($failure) {
+                Write-Warning -Message "Failed on downloading templates."
+            }
+            Else {
+                # Move downloaded templates to the template store
+                ForEach ($template in $downloadedTemplates) {
+                    Write-Verbose -Message "$($MyInvocation.MyCommand): Moving template: $template."
+                    Move-Item -Path $template -Destination $inboxTemplatesSrc -Force
+                }
+
+                Write-Verbose -Message "$($MyInvocation.MyCommand): Removing temp folder: $templatesTemp."
+                Remove-Item -Path $templatesTemp -Recurse -Force
+
+                # Unregister existing templates
+                Write-Verbose -Message "$($MyInvocation.MyCommand): Unregistering existing templates."
+                Get-UevTemplate | Unregister-UevTemplate -ErrorAction SilentlyContinue
+
+                # Register specified templates
+                ForEach ($template in $Templates) {
+                    Write-Verbose -Message "$($MyInvocation.MyCommand): Registering template: $template."
+                    Register-UevTemplate -Path "$inboxTemplatesSrc\$template"
+                }
             }
 
-            Write-Verbose -Message "$($MyInvocation.MyCommand): Removing temp folder: $templatesTemp."
-            Remove-Item -Path $templatesTemp -Recurse -Force
-
-            # Unregister existing templates
-            Write-Verbose -Message "$($MyInvocation.MyCommand): Unregistering existing templates."
-            Get-UevTemplate | Unregister-UevTemplate -ErrorAction SilentlyContinue
-
-            # Register specified templates
-            ForEach ($template in $Templates) {
-                Write-Verbose -Message "$($MyInvocation.MyCommand): Registering template: $template."
-                Register-UevTemplate -Path "$inboxTemplatesSrc\$template"
-            }
-
-            # If the templates registered successfull, configure the client
+            # If the templates registered successfully, configure the client
             If (Get-UevTemplate | Out-Null) {
-                # Determine the UEV settings storage path in the OneDrive folder
-                If (Test-Path -Path "env:OneDriveCommercial") {
-                    $settingsStoragePath = "%OneDriveCommercial%"
-                    Write-Verbose -Message "$($MyInvocation.MyCommand): UE-V Settings Storage Path is $settingsStoragePath."
-                }
-                ElseIf (Test-Path -Path "env:OneDrive") {
-                    $settingsStoragePath = "%OneDrive%"
-                    Write-Verbose -Message "$($MyInvocation.MyCommand): UE-V Settings Storage Path is $settingsStoragePath."
-                }
-                Else {
-                    Write-Warning -Message "$($MyInvocation.MyCommand): OneDrive path not found."
-                }
 
                 # Set the UEV settings. These settings will work for UEV in OneDrive with Enterprise State Roaming enabled
                 # https://docs.microsoft.com/en-us/azure/active-directory/devices/enterprise-state-roaming-faqs
@@ -285,7 +284,7 @@ If (Test-Windows10Enterprise) {
                         EnableSettingsImportNotify          = $True
                         EnableSync                          = $True
                         EnableWaitForSyncOnApplicationStart = $True
-                        SettingsStoragePath                 = $settingsStoragePath
+                        SettingsStoragePath                 = $SettingsStoragePath
                         SyncMethod                          = "External"
                         WaitForSyncTimeoutInMilliseconds    = "2000"
                     }

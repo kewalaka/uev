@@ -267,6 +267,10 @@ If (Test-Windows10Enterprise) {
                     Write-Verbose -Message "$($MyInvocation.MyCommand): Registering template: $template."
                     Register-UevTemplate -Path "$inboxTemplatesSrc\$template"
                 }
+
+                # Enable Backup mode for all templates
+                Get-UevTemplate | ForEach-Object { Set-UevTemplateProfile -Id $_.TemplateId -Profile "Backup" `
+                        -ErrorAction "SilentlyContinue" }
             }
 
             # If the templates registered successfully, configure the client
@@ -275,7 +279,7 @@ If (Test-Windows10Enterprise) {
                 # Set the UEV settings. These settings will work for UEV in OneDrive with Enterprise State Roaming enabled
                 # https://docs.microsoft.com/en-us/azure/active-directory/devices/enterprise-state-roaming-faqs
                 If ($status.UevEnabled -eq $True) {
-                    $UevParams = @{
+                    $uevParams = @{
                         Computer                            = $True
                         DisableSyncProviderPing             = $True
                         DisableWaitForSyncOnLogon           = $True
@@ -288,7 +292,7 @@ If (Test-Windows10Enterprise) {
                         SyncMethod                          = "External"
                         WaitForSyncTimeoutInMilliseconds    = "2000"
                     }
-                    Set-UevConfiguration @UevParams
+                    Set-UevConfiguration @uevParams
                 }
             }
         }

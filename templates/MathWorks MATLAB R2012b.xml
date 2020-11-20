@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2012/SettingsLocationTemplate">
+  <Name>MathWorks MATLAB R2012b</Name>
+  <ID>MATLAB-MATLAB-v-8-0</ID>
+  <Version>1</Version>
+  <Author>
+    <Name>Name here</Name>
+    <Email>null@null.com</Email>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>MATLAB.exe</Filename>
+      <ProductVersion>
+        <Major Minimum="8" Maximum="8" />
+        <Minor Minimum="0" Maximum="0" />
+      </ProductVersion>
+      <FileVersion>
+        <Major Minimum="8" Maximum="8" />
+        <Minor Minimum="0" Maximum="0" />
+      </FileVersion>
+    </Process>
+  </Processes>
+  <Settings>
+    <Registry>
+      <Path Recursive="true">Software\Mathworks</Path>
+    </Registry>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">MathWorks\MATLAB\R2012b</Path>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Subversion</Path>
+    </File>
+  </Settings>
+</SettingsLocationTemplate>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
+  <Name>Windows SFTP, FTP and SCP client</Name>
+  <ID>WinSCP-WinSCP-v-4-0</ID>
+  <Version>1</Version>
+  <Author>
+    <Name>M.A.Slik</Name>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>WinSCP.exe</Filename>
+      <ProductVersion>
+        <Major Minimum="4" Maximum="4" />
+        <Minor Minimum="0" Maximum="0" />
+      </ProductVersion>
+      <FileVersion>
+        <Major Minimum="4" Maximum="4" />
+        <Minor Minimum="0" Maximum="0" />
+      </FileVersion>
+    </Process>
+  </Processes>
+  <Settings>
+    <Registry>
+      <Path Recursive="true">SOFTWARE\Martin Prikryl</Path>
+    </Registry>
+  </Settings>
+</SettingsLocationTemplate>

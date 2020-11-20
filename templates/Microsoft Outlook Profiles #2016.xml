@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
+  <Name>Microsoft Outlook Profiles 2016</Name>
+  <ID>Microsoft Outlook Profiles #2016</ID>
+  <Version>1</Version>
+  <Author>
+    <Name>Matt Hadley</Name>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>OUTLOOK.EXE</Filename>
+      <ProductVersion>
+        <Major Minimum="16" Maximum="16" />
+        <Minor Minimum="0" Maximum="0" />
+      </ProductVersion>
+      <FileVersion>
+        <Major Minimum="16" Maximum="16" />
+        <Minor Minimum="0" Maximum="0" />
+      </FileVersion>
+    </Process>
+  </Processes>
+  <Settings>
+    <Registry>
+      <Path>SOFTWARE\Microsoft\Office\16.0\Outlook\PST</Path>
+    </Registry>
+    <Registry>
+      <Path>SOFTWARE\Microsoft\Office\16.0\Outlook</Path>
+    </Registry>
+    <Registry>
+      <Path>SOFTWARE\Microsoft\Office\16.0\Outlook\Options\Mail</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">SOFTWARE\Microsoft\Office\16.0\Outlook\Profiles</Path>
+    </Registry>
+  </Settings>
+</SettingsLocationTemplate>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
+  <Name>Visual Studio Code</Name>
+  <ID>Visual-Studio-Code-Code-v-1-2</ID>
+  <Version>2</Version>
+  <Author>
+    <Name>Fred Bainbridge</Name>
+    <Email>fbainbridge@live.com</Email>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>Code.exe</Filename>
+      <ProductVersion>
+        <Major Minimum="1" Maximum="10" />
+      </ProductVersion>
+      <FileVersion>
+        <Major Minimum="1" Maximum="10" />        
+      </FileVersion>
+    </Process>
+  </Processes>
+  <Settings>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Code\User</Path>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>USERPROFILE</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">.vscode\extensions</Path>
+    </File>
+  </Settings>
+</SettingsLocationTemplate>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SettingsLocationTemplate xmlns='http://schemas.microsoft.com/UserExperienceVirtualization/2013/SettingsLocationTemplate'>
+  <Name>DesktopSettingsWin10</Name>
+  <ID>DesktopSettingsWin10</ID>
+  <Version>1</Version>
+  <Processes>
+    <ShellProcess/>
+  </Processes>
+  <Settings>
+<Asynchronous>true</Asynchronous>
+    <Registry>
+      <Path Recursive="true" DeleteIfNotFound="false">Software\Microsoft\Windows\CurrentVersion\Explorer\Streams\Desktop</Path>
+    </Registry>    
+    <Registry>
+                               <Path Recursive="true" DeleteIfNotFound="false">Software\Microsoft\Windows\CurrentVersion\Explorer\MenuOrder</Path>
+    </Registry>
+                  <Registry>
+                               <Path Recursive="true" DeleteIfNotFound="false">Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs</Path>
+    </Registry>
+   
+                <!-- Taskbar Settings -->
+    <Registry>
+                               <Path Recursive="true" DeleteIfNotFound="false">Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage</Path>
+                </Registry>
+                <Registry>
+                               <Path Recursive="true" DeleteIfNotFound="false">Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage2</Path>
+                </Registry>
+    <Registry>
+                               <Path Recursive="true" DeleteIfNotFound="false">Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband</Path>
+                </Registry>
+                <Registry>
+                                <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3</Path>
+                                <Name>Settings</Name>
+                </Registry>
+    
+                <!-- Explorer Folder Options and View Settings -->
+    <Registry>
+                               <Path Recursive="true" DeleteIfNotFound="false">Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist</Path>
+                </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState</Path>
+      <Name>Settings</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer</Path>
+      <Name>ShellState</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer</Path>
+      <Name>IconUnderline</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState</Path>
+      <Name>FullPath</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer</Path>
+      <Name>ShowDriveLettersFirst</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\Search</Path>
+    </Registry>
+    
+                <!-- Desktop Icon Positions -->
+    <Registry>
+                               <Path Recursive="true" DeleteIfNotFound="false">Software\Microsoft\Windows\Shell\Bags\1\Desktop</Path>
+                </Registry>
+                
+                 <!--Desktop Icons-->
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu</Path>
+      <Name>{20D04FE0-3AEA-1069-A2D8-08002B30309D}</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu</Path>
+      <Name>{5399E694-6CE5-4D6C-8FCE-1D8870FDCBA0}</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu</Path>
+      <Name>{59031a47-3f72-44a7-89c5-5595fe6b30ee}</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu</Path>
+      <Name>{645FF040-5081-101B-9F08-00AA002F954E}</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu</Path>
+      <Name>{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel</Path>
+      <Name>{20D04FE0-3AEA-1069-A2D8-08002B30309D}</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel</Path>
+      <Name>{5399E694-6CE5-4D6C-8FCE-1D8870FDCBA0}</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel</Path>
+      <Name>{59031a47-3f72-44a7-89c5-5595fe6b30ee}</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel</Path>
+      <Name>{645FF040-5081-101B-9F08-00AA002F954E}</Name>
+    </Registry>
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel</Path>
+      <Name>{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}</Name>
+    </Registry>
+                
+    <!-- Visual Effects -->
+    <Registry>
+                               <Path Recursive="true" DeleteIfNotFound="false">Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects</Path>
+                </Registry>
+                
+    <!-- Run History -->
+    <Registry>
+                               <Path Recursive="true" DeleteIfNotFound="false">Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU</Path>
+                </Registry>
+    <!--Typed Paths -->
+    <Registry>
+                               <Path Recursive="true" DeleteIfNotFound="false">Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths</Path>
+                </Registry>
+                  <!-- Outlook / Exchange Messaging Subsystem  -->
+                  <Registry>
+                               <Path Recursive="true" DeleteIfNotFound="false">Software\Microsoft\Windows NT\CurrentVersion\Windows Messaging Subsystem</Path>
+                </Registry>
+
+    <!--Keyboard Layout--> 
+    <Registry>
+      <Path Recursive="true">Keyboard Layout</Path>
+    </Registry>
+
+  <!--App switching / hot corners-->
+    <Registry>
+      <Path Recursive="true" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\ImmersiveShell</Path>
+    </Registry>
+
+  <!--Quiet Hours-->
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\Windows\CurrentVersion\Explorer\QuietHours</Path>
+    </Registry>
+
+  <!--Keyboard-->
+    <Registry>
+      <Path Recursive="false" DeleteIfNotFound="true">Software\Microsoft\TabletTip\1.7</Path>
+    </Registry>
+
+  <!--Spelling Dictionary-->
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Microsoft\Spelling</Path>
+    </File>
+
+  <!--Quick Launch-->
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Microsoft\Internet Explorer\Quick Launch</Path>
+    </File>
+
+    <Registry>
+      <Path Recursive="true">SOFTWARE\Microsoft\Windows\CurrentVersion\ThemeManager</Path>
+    </Registry>    
+    <Registry>
+      <Path Recursive="true">SOFTWARE\Microsoft\Windows\CurrentVersion\Themes</Path>
+    </Registry>
+
+    <Registry>
+      <Path Recursive="true">Control Panel\Appearance</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Control Panel\Colors</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Control Panel\Cursors</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Control Panel\Desktop</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Control Panel\Input Method</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Control Panel\Mouse</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Control Panel\Sound</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Control Panel\International</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Control Panel\Keyboard</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Control Panel\Personalization\Desktop Slideshow</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Software\Microsoft\Windows\DWM</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Software\Microsoft\Windows\CurrentVersion\Applets</Path>
+    </Registry>
+      <File>
+        <Root>
+          <EnvironmentVariable>APPDATA</EnvironmentVariable>
+        </Root>
+        <Path Recursive="false">Microsoft\Windows\Themes</Path>
+        <FileMask>*.ini</FileMask>
+      </File>
+    <SystemParameter>DeskWallpaper</SystemParameter>
+    <SystemParameter>DesktopColor</SystemParameter>
+  </Settings>
+</SettingsLocationTemplate>

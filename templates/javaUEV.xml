@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013/SettingsLocationTemplate">
+  <Name>Java Control Panel</Name>
+  <ID>Java-TM-Platform-SE-8-javacpl-v-11-111</ID>
+  <Version>1</Version>
+  <Author>
+    <Name>Schweikert Gabriela</Name>
+    <Email>gabi@schweikert.ch</Email>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>javacpl.exe</Filename>
+      <ProductVersion>
+        <Major Minimum="8" Maximum="8" />
+        <Minor Minimum="0" Maximum="0" />
+      </ProductVersion>
+      <FileVersion>
+        <Major Minimum="11" Maximum="11" />
+        <Minor Minimum="111" Maximum="111" />
+      </FileVersion>
+    </Process>
+  </Processes>
+  <Settings>
+    <Registry>
+      <Path Recursive="true>Software\JavaSoft</Path>
+    </Registry>
+   <File>
+      <Root>
+        <EnvironmentVariable>LOCALAPPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Sun\Java\Deployment</Path>
+   </File>
+  </Settings>
+</SettingsLocationTemplate>

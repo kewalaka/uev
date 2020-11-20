@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
+  <Name>Adobe Illustrator CS6</Name>
+  <ID>Adobe-Illustrator-Illustrator-v-16-0</ID>
+  <Version>1</Version>
+  <Author>
+   <Name>Gabriela Schweikert</Name>
+    <Email>gabi@schweikert.ch</Email>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>Illustrator.exe</Filename>
+      <ProductVersion>
+        <Major Minimum="6" Maximum="6" />
+      </ProductVersion>
+      <FileVersion>
+        <Major Minimum="16" Maximum="16" />
+        <Minor Minimum="0" Maximum="0" />
+      </FileVersion>
+    </Process>
+  </Processes>
+  <Settings>
+    <Registry>
+      <Path>Software\Adobe</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\IAC</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\CSXS.3</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\83C037AC99C1</Path>
+    </Registry>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Adobe\Adobe Illustrator CS6 Settings</Path>
+    </File>
+        <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path>Adobe\Adobe Illustrator\16.0.0</Path>
+      <FileMask>AppPrefs.xml</FileMask>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Adobe\Save For Web AI</Path>
+    </File>
+    
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Adobe\CS6ServiceManager\logs</Path>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Adobe\AIR\CRLCache</Path>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Macromedia\Flash Player\macromedia.com</Path>
+    </File>
+  </Settings>
+</SettingsLocationTemplate>

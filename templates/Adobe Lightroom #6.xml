@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
+  <Name>Adobe Lightroom 6</Name>
+  <ID>Adobe Lightroom #6</ID>
+  <Version>4</Version>
+  <Author>
+    <Name>Matt Hadley</Name>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>lightroom.exe</Filename>
+      <ProductVersion>
+        <Major Minimum="6" Maximum="6" />
+      </ProductVersion>
+      <FileVersion>
+        <Major Minimum="6" Maximum="6" />
+      </FileVersion>
+    </Process>
+  </Processes>
+  <Settings>
+    <Registry>
+      <Path Recursive="true">SOFTWARE\Adobe Lightroom</Path>
+    </Registry>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Adobe\Lightroom</Path>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path>Adobe\LightroomCatalogs</Path>
+      <FileMask>*.lrcat</FileMask>
+    </File>
+  </Settings>
+</SettingsLocationTemplate>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
+  <Name>PuTTy</Name>
+  <ID>PuTTY #ALL</ID>
+  <Version>1</Version>
+  <Author>
+    <Name>Matt Hadley</Name>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>putty.exe</Filename>
+    </Process>
+  </Processes>
+  <Settings>
+    <Registry>
+      <Path Recursive="true">SOFTWARE\SimonTatham\PuTTY</Path>
+    </Registry>
+  </Settings>
+</SettingsLocationTemplate>

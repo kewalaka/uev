@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013/SettingsLocationTemplate">
+  <Name>Notepad++ : a free (GNU) source code editor</Name>
+  <ID>Notepad-notepad-v-6-6</ID>
+  <Version>1</Version>
+  <Author>
+    <Name>Gabriela Schweikert</Name>
+    <Email>gabi@schweikert.ch</Email>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>notepad++.exe</Filename>
+      <ProductVersion>
+        <Major Minimum="6" Maximum="6" />
+        <Minor Minimum="69" Maximum="69" />
+      </ProductVersion>
+      <FileVersion>
+        <Major Minimum="6" Maximum="6" />
+        <Minor Minimum="6" Maximum="6" />
+      </FileVersion>
+    </Process>
+  </Processes>
+  <Settings>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path>Notepad++</Path>
+      <FileMask>langs.xml</FileMask>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path>Notepad++</Path>
+      <FileMask>config.xml</FileMask>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path>Notepad++</Path>
+      <FileMask>stylers.xml</FileMask>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path>Notepad++</Path>
+      <FileMask>shortcuts.xml</FileMask>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path>Notepad++</Path>
+      <FileMask>contextMenu.xml</FileMask>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Notepad++\plugins</Path>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path>Notepad++</Path>
+      <FileMask>session.xml</FileMask>
+    </File>
+  </Settings>
+</SettingsLocationTemplate>

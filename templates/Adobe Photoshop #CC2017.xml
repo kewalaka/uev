@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
+  <Name>Adobe Photoshop CC 2017</Name>
+  <ID>Adobe Photoshop #CC2017</ID>
+  <Version>1</Version>
+  <Author>
+    <Name>Matt Hadley</Name>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>Photoshop.exe</Filename>
+      <ProductVersion>
+        <Major Minimum="18" Maximum="18" />
+      </ProductVersion>
+      <FileVersion>
+        <Major Minimum="18" Maximum="18" />
+      </FileVersion>
+    </Process>
+  </Processes>
+  <Settings>
+    <Registry>
+      <Path Recursive="true">SOFTWARE\Adobe\Photoshop</Path>
+    </Registry>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Adobe\Adobe Photoshop CC 2017</Path>
+    </File>
+  </Settings>
+</SettingsLocationTemplate>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
+  <Name>Microsoft Remote Desktop Connection Manager</Name>
+  <ID>Microsoft Remote Desktop Connection Manager #ALL</ID>
+  <Version>1</Version>
+  <Author>
+    <Name>Matt Hadley</Name>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>RDCMan.exe</Filename>
+    </Process>
+  </Processes>
+  <Settings>
+    <File>
+      <Root>
+        <EnvironmentVariable>LOCALAPPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Microsoft\Remote Desktop Connection Manager</Path>
+    </File>
+  </Settings>
+</SettingsLocationTemplate>

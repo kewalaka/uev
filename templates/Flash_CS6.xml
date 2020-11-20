@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
+  <Name>Adobe Flash CS6</Name>
+  <ID>Adobe-Flash-CS6-Flash-v-12-0</ID>
+  <Version>1</Version>
+  <Author>
+     <Name>Gabriela Schweikert</Name>
+    <Email>gabi@schweikert.ch</Email>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>Flash.exe</Filename>
+      <ProductVersion>
+        <Major Minimum="12" Maximum="12" />
+        <Minor Minimum="0" Maximum="0" />
+      </ProductVersion>
+      <FileVersion>
+        <Major Minimum="12" Maximum="12" />
+        <Minor Minimum="0" Maximum="0" />
+      </FileVersion>
+    </Process>
+  </Processes>
+  <Settings>
+    <Registry>
+      <Path>Software\Adobe</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Hilite Color</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Hilite Drawing Object Color</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Hilite Group Color</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Hilite Primitive Color</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Hilite Symbol Color</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Settings</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Timeline</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\TextFontPanel</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Stroke</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\TextParagraphPanel</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\TextOptionsPanel</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Wand</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Assistant</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Clipboard</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Spell Checker Settings</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Property Inspector Settings</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\VectorDefault</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Frame Settings</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Colors</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Warning Dialog Windows</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Inspectors</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\TLFDefaults</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\PropertyInspector</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Color Panel</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\TabRulerDefaults</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Document</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\PublishFormatProperties</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\PublishHtmlProperties</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\PublishProfileProperties</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\PublishJpegProperties</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\PublishRNWKProperties</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\PublishGifProperties</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\PublishPNGProperties</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\PublishQTProperties</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\ComponentsPanelCategories</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\KeyframeEditor</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Shortcuts Settings</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\ActionsInspector</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Undo Settings</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\PublishCache</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\Project</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\VersionCue</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Software\Adobe\Flash 12\Importers</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\Flash 12\LastOpenDocs</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\83C037AC99C1</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\CSXS.3</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\IAC</Path>
+    </Registry>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path>Adobe\CS6ServiceManager\cache\ExtensionManifest</Path>
+      <FileMask>FLPR_12_0_0_de_DE.cache</FileMask>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Adobe\CS6ServiceManager\logs</Path>
+    </File>
+  </Settings>
+</SettingsLocationTemplate>

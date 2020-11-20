@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
+  <Name>Mindjet MindManager 2017</Name>
+  <ID>MindManager-MindManager-v-17-0</ID>
+  <Version>1</Version>
+  <Author>
+   <Name>Gabriela Schweikert</Name>
+    <Email>gabi@schweikert.ch</Email>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>MindManager.exe</Filename>
+      <ProductVersion>
+        <Major Minimum="17" Maximum="17" />
+        <Minor Minimum="0" Maximum="0" />
+      </ProductVersion>
+      <FileVersion>
+        <Major Minimum="17" Maximum="17" />
+        <Minor Minimum="0" Maximum="0" />
+      </FileVersion>
+    </Process>
+  </Processes>
+  <Settings>
+    <Registry>
+      <Path Recursive="true">Software\Mindjet</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Software\Corel</Path>
+    </Registry>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path>Microsoft\Windows\Cookies</Path>
+      <FileMask>O8HWFJOO.txt</FileMask>
+    </File>
+  </Settings>
+</SettingsLocationTemplate>

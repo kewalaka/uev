@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<SettingsLocationTemplate xmlns="http://schemas.microsoft.com/UserExperienceVirtualization/2013A/SettingsLocationTemplate">
+  <Name>Adobe Photoshop CS6</Name>
+  <ID>Adobe-Photoshop-CS6-Photoshop-v-13-0</ID>
+  <Version>1</Version>
+  <Author>
+    <Name>Gabriela Schweikert</Name>
+    <Email>gabi@schweikert.ch</Email>
+  </Author>
+  <Processes>
+    <Process>
+      <Filename>Photoshop.exe</Filename>
+      <ProductVersion>
+        <Major Minimum="6" Maximum="6" />
+      </ProductVersion>
+      <FileVersion>
+        <Major Minimum="13" Maximum="13" />
+        <Minor Minimum="0" Maximum="0" />
+      </FileVersion>
+    </Process>
+  </Processes>
+  <Settings>
+    <Registry>
+      <Path>Software\Adobe</Path>
+    </Registry>
+    <Registry>
+      <Path Recursive="true">Software\Adobe\Photoshop</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\83C037AC99C1</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\IAC</Path>
+    </Registry>
+    <Registry>
+      <Path>Software\Adobe\CSXS.3</Path>
+    </Registry>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path>Adobe\Adobe Photoshop CS6\Adobe Photoshop CS6 Settings</Path>
+      <FileMask>Adobe Photoshop CS6 Prefs.psp</FileMask>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Adobe\Adobe Photoshop CS6\Adobe Photoshop CS6 Settings</Path>
+    </File>
+    
+        <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path>Adobe\Color</Path>
+      <FileMask>ACEConfigCache2.lst</FileMask>
+    </File>
+    <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Adobe\CameraRaw</Path>
+    </File>
+        <File>
+      <Root>
+        <EnvironmentVariable>APPDATA</EnvironmentVariable>
+      </Root>
+      <Path Recursive="true">Adobe\CS6ServiceManager\logs</Path>
+    </File>
+  </Settings>
+</SettingsLocationTemplate>
